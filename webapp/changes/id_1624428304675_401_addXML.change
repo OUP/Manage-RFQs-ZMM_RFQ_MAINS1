@@ -1,0 +1,43 @@
+{
+	"fileName": "id_1624428304675_401_addXML",
+	"fileType": "change",
+	"changeType": "addXML",
+	"moduleName": "",
+	"reference": "customer.ZMM_RFQ_MAINS1",
+	"packageName": "$TMP",
+	"content": {
+		"fragmentPath": "fragments/NotesSubSection.fragment.xml",
+		"targetAggregation": "subSections",
+		"index": 0
+	},
+	"selector": {
+		"id": "s2p.mm.pur.rfq.maintains1::sap.suite.ui.generic.template.ObjectPage.view.Details::C_RequestForQuotationEnhWD--sap.nw.core.gbt.notes.lib.reuse.notes4smarttemplate::header::Notes::ComponentSection",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/s2p.mm.pur.rfq.maintains1/changes/",
+	"projectId": "customer.ZMM_RFQ_MAINS1",
+	"creation": "2021-06-23T06:05:05.234Z",
+	"originalLanguage": "EN",
+	"conditions": {},
+	"context": "",
+	"support": {
+		"generator": "Change.createInitialFileContent",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.71.29",
+		"sourceChangeFileName": "",
+		"compositeCommand": ""
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"validAppVersions": {
+		"creation": "7.0.2",
+		"from": "7.0.2",
+		"to": "7.0.2"
+	},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}
