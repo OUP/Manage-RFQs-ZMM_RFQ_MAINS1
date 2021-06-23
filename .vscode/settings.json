@@ -1,0 +1,27 @@
+{
+  "ports.excludeExposeNotification": {
+    "ports": [
+      6005
+    ]
+  },
+  "Adaptation Project.componentname": "s2p.mm.pur.rfq.maintains1",
+  "Adaptation Project.safeMode": false,
+  "Adaptation Project.appvariant": "ZMM_RFQ_MAINS1",
+  "Adaptation Project.layer": "CUSTOMER_BASE",
+  "Adaptation Project.sourceSystem": "S4D130",
+  "Adaptation Project.isOVPApp": false,
+  "Adaptation Project.isFioriElement": true,
+  "Adaptation Project.environment": "ABAP",
+  "Adaptation Project.destinations": [
+    {
+      "name": "S4D130",
+      "url": "http://s4dbasdev:443",
+      "proxyType": "OnPremise"
+    },
+    {
+      "name": "sapui5",
+      "url": "http://sapui5.hana.ondemand.com/1.71.34"
+    }
+],
+"actions": []
+}

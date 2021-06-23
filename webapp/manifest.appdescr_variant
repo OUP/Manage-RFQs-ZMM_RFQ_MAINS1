@@ -1,0 +1,44 @@
+{
+  "fileName": "manifest",
+  "layer": "CUSTOMER_BASE",
+  "fileType": "appdescr_variant",
+  "reference": "s2p.mm.pur.rfq.maintains1",
+  "id": "customer.ZMM_RFQ_MAINS1",
+  "namespace": "apps/s2p.mm.pur.rfq.maintains1/appVariants/customer.ZMM_RFQ_MAINS1/",
+  "content": [
+    {
+      "changeType": "appdescr_app_setTitle",
+      "content": {},
+      "texts": {
+        "i18n": "i18n/i18n.properties"
+      }
+    },
+    {
+      "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+      "content": {
+        "modelId": "i18n|sap.suite.ui.generic.template.ListReport|C_RequestForQuotationEnhWD"
+      },
+      "texts": {
+        "i18n": "i18n/ListReport/C_RequestForQuotationEnhWD/i18n.properties"
+      }
+    },
+    {
+      "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+      "content": {
+        "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_RequestForQuotationEnhWD"
+      },
+      "texts": {
+        "i18n": "i18n/ObjectPage/C_RequestForQuotationEnhWD/i18n.properties"
+      }
+    },
+    {
+      "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+      "content": {
+        "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|to_RFQItemEnhWD"
+      },
+      "texts": {
+        "i18n": "i18n/ObjectPage/C_RFQItemEnhWD/i18n.properties"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "componentname": "s2p.mm.pur.rfq.maintains1",
+    "safeMode": false,
+    "appvariant": "ZMM_RFQ_MAINS1",
+    "layer": "CUSTOMER_BASE",
+    "sourceSystem": "S4D130",
+    "isOVPApp": false,
+    "isFioriElement": true,
+    "environment": "ABAP",
+    "destinations": [
+        {
+            "name": "S4D130",
+            "url": "http://s4dbasdev130:443",
+            "proxyType": "OnPremise"
+        },
+        {
+            "name": "sapui5",
+            "url": "http://sapui5.hana.ondemand.com/1.71.34"
+        }
+    ]
+}
