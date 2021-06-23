@@ -12,6 +12,15 @@
         <blocks>
 
 			<smartForm:SmartForm id="idNotesSubSection0SmartForm0" editable="{ui>/editable}">
+                <smartForm:layout>
+                    <smartForm:ColumnLayout 
+                        id="idNotesSubSection0SmartForm0SmartColumnLayout0" 
+                        columnsM="1" 
+                        columnsL="1" 
+                        columnsXL="1"
+                        labelCellsLarge="2"
+                        emptyCellsLarge="0"/>
+                </smartForm:layout>
                 <smartForm:Group id="idNotesSubSection0SmartForm0Group0">
 					<!--Email Checkbox-->
 					<smartForm:GroupElement id="idNotesSubSection0SmartFormGroupElement0">
