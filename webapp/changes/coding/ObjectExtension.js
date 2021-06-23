@@ -17,9 +17,13 @@ sap.ui.define([
         "use strict";
 
         let _oView = null;
+        let _oEmailTemplate = {};
         let _bCustomerDataLoaded = false;
         let _aCustomerData = [];
         let _oCustomerTypeODataModel = null;
+        let _oCommonServiceODataModel = null;
+
+        const _sCustomerNamespace = "customer.ZMM_RFQ_MAINS1";
 
         return ControllerExtension.extend("ZMM_RFQ_MAINS1.ObjectExtension", {
 
@@ -37,8 +41,14 @@ sap.ui.define([
                         // load customer data types model
                         _oCustomerTypeODataModel = this._loadODataService('ZPTP_C_PROJ_TRCK_RESTRICT_CDS');
 
+                        // load common service
+                        _oCommonServiceODataModel = this._loadODataService('ZGLBFAB_COMMON_SRV');
+
                         // load customer data types list
                         this._loadCustomerTypes();
+
+                        // load notes section email template
+                        this._loadEmailtemplate();
                     }, 50);
                 },
 
@@ -61,7 +71,7 @@ sap.ui.define([
 
                 // get all customer types
                 const aAllCustomerList = await this._loadCustomerTypes();
-                
+
                 for (let obj of aAllCustomerList) {
                     if (obj.documentCategory === sDocumentCategory && obj.documentType === sDocumentType) {
                         bVisible = true;
@@ -70,6 +80,36 @@ sap.ui.define([
                 }
 
                 return bVisible
+            },
+
+            handleNotesEmailSelect: function (oEvent) {
+                try {
+                    // input
+                    const sInputId = `${_oView.getId()}--${_sCustomerNamespace}.idNotesSubSection0SubSectionField1`;
+                    let oInput = sap.ui.getCore().byId(sInputId);
+
+                    // text area
+                    const sSmartformId = `${_oView.getId()}--${_sCustomerNamespace}.idNotesSubSection0SmartForm0`;
+                    const oSmartform = sap.ui.getCore().byId(sSmartformId);
+                    const oComponetSection = oSmartform.getParent().getParent().getParent();
+
+                    const dom = oComponetSection.$();
+                    const sTextInputId = dom.find("textarea")[0].id;
+                    let oTextArea = sap.ui.getCore().byId(sTextInputId.split("-inner")[0]);
+
+                    if (oEvent.getParameter("newValue")) {
+                        // template
+                        oTextArea.setValue(_oEmailTemplate.MailContent);
+                        // subject 
+                        oInput.setValue(_oEmailTemplate.MailSubject);
+                    } else {
+                        // clear the values on uncheck
+                        oInput.setValue();
+                        oTextArea.setValue();
+                    }
+                } catch (error) {
+                    Log.error(`Failed to add subject from email template and subject in notes section - ${error}`);
+                }
             },
 
             /***********************************************************************/
@@ -119,7 +159,14 @@ sap.ui.define([
                         });
                     }
                 });
-            }
+            },
+
+            _loadEmailtemplate: function () {
+                _oCommonServiceODataModel.read("/RfqNoteSet(Mailto=true,MailLangu='E')", {
+                    success: oData => _oEmailTemplate = oData || {},
+                    error: _oError => { }
+                });
+            },
 
         });
     });
