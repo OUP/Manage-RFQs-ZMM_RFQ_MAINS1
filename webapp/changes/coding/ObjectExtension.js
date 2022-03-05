@@ -20,8 +20,6 @@ sap.ui.define([
         let _oEmailTemplate = {};
         let _bCustomerDataLoaded = false;
         let _aCustomerData = [];
-        let _oCustomerTypeODataModel = null;
-        let _oCommonServiceODataModel = null;
 
         const _sCustomerNamespace = "customer.ZMM_RFQ_MAINS1";
 
@@ -38,12 +36,6 @@ sap.ui.define([
                     _oView = this.getView();
 
                     setTimeout(_ => {
-                        // load customer data types model
-                        _oCustomerTypeODataModel = this._loadODataService('ZPTP_C_PROJ_TRCK_RESTRICT_CDS');
-
-                        // load common service
-                        _oCommonServiceODataModel = this._loadODataService('ZGLBFAB_COMMON_SRV');
-
                         // load customer data types list
                         this._loadCustomerTypes();
 
@@ -69,14 +61,18 @@ sap.ui.define([
                     return bVisible;
                 }
 
-                // get all customer types
-                const aAllCustomerList = await this._loadCustomerTypes();
-
-                for (let obj of aAllCustomerList) {
-                    if (obj.documentCategory === sDocumentCategory && obj.documentType === sDocumentType) {
-                        bVisible = true;
-                        break;
+                try {
+                    // get all customer types
+                    const aAllCustomerList = await this._loadCustomerTypes();
+                    
+                    for (let obj of aAllCustomerList) {
+                        if (obj.documentCategory === sDocumentCategory && obj.documentType === sDocumentType) {
+                            bVisible = true;
+                            break;
+                        }
                     }
+                } catch (error) {
+                    // failed to load customer type
                 }
 
                 return bVisible
@@ -116,11 +112,6 @@ sap.ui.define([
             /*                          INTERNAL METHODS                           */
             /***********************************************************************/
 
-            _loadODataService: function (sService) {
-                const sUrl = `/sap/opu/odata/sap/${sService}/`;
-                return new ODataModel(sUrl, true);
-            },
-
             _loadCustomerTypes: function () {
                 return new Promise((resolve, reject) => {
                     // customer type not loaded
@@ -135,7 +126,7 @@ sap.ui.define([
                         aFilter.push(new Filter('variable_name', FilterOperator.EQ, 'RFQ_CUSTOMER_DATA'));
 
                         // read with filter
-                        _oCustomerTypeODataModel.read('/ZPTP_C_PROJ_TRCK_RESTRICT', {
+                        _oView.getModel("customer.customerType").read('/ZPTP_C_PROJ_TRCK_RESTRICT', {
                             filters: aFilter,
                             success: (oData) => {
                                 // format to required format
@@ -162,8 +153,8 @@ sap.ui.define([
             },
 
             _loadEmailtemplate: function () {
-                _oCommonServiceODataModel.read("/RfqNoteSet(Mailto=true,MailLangu='E')", {
-                    success: oData => _oEmailTemplate = oData || {},
+                _oView.getModel("customer.common").read("/RfqNoteSet(Mailto=true,MailLangu='E')", {
+                    success: (oData) => _oEmailTemplate = oData || {},
                     error: _oError => { }
                 });
             },

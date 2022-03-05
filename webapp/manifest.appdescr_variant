@@ -7,6 +7,48 @@
   "namespace": "apps/s2p.mm.pur.rfq.maintains1/appVariants/customer.ZMM_RFQ_MAINS1/",
   "content": [
     {
+        "changeType": "appdescr_ui5_addNewModel",
+        "content": {
+            "dataSource": {
+                "customer.customerTypeDataSource": {
+                    "uri": "/sap/opu/odata/sap/ZPTP_C_PROJ_TRCK_RESTRICT_CDS",
+                    "type": "OData",
+                    "settings": {
+                        "odataVersion": "2.0"
+                    }
+                }
+            },
+            "model": {
+                "customer.customerType": {
+                    "dataSource": "customer.customerTypeDataSource",
+                    "preload": true,
+                    "settings": {}
+                }
+            }
+        }
+    },
+    {
+        "changeType": "appdescr_ui5_addNewModel",
+        "content": {
+            "dataSource": {
+                "customer.commonDataSource": {
+                    "uri": "/sap/opu/odata/sap/ZGLBFAB_COMMON_SRV",
+                    "type": "OData",
+                    "settings": {
+                        "odataVersion": "2.0"
+                    }
+                }
+            },
+            "model": {
+                "customer.common": {
+                    "dataSource": "customer.commonDataSource",
+                    "preload": true,
+                    "settings": {}
+                }
+            }
+        }
+    },
+    {
       "changeType": "appdescr_app_setTitle",
       "content": {},
       "texts": {
